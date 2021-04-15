@@ -1,0 +1,14 @@
+﻿<p>I have notified them</p>
+<p>@System.DateTime.Now</p>
+<p>Current connected devices: @Model</p>
+<h2>Send notifications</h2>
+@{
+    Html.BeginForm("Hit", "Home", FormMethod.Get);
+}
+<label>Send notification to</label>
+<input type="number" name="id" />
+
+<button>Go</button>
+@{
+    Html.EndForm();
+}

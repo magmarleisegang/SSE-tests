@@ -1,0 +1,29 @@
+﻿<div class="jumbotron">
+    <h1>Example SSE application</h1>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <h2>Start a client connection</h2>
+        @{
+            Html.BeginForm("Chat", "Home", FormMethod.Get);
+        }
+        <label>Specify connection id</label>
+        <input type="number" name="id"/>
+        <button>Connect</button>
+        @{ 
+            Html.EndForm();
+        }
+    </div>
+    <div class="col-md-4">
+        <h2>Send notifications</h2>
+        @{
+            Html.BeginForm("Hit", "Home", FormMethod.Get);
+        }
+        <label>Specify connection to hit (Optional)</label>
+        <input type="number" name="id" />
+        <button>Go</button>
+        @{
+            Html.EndForm();
+        }
+    </div>
+</div>

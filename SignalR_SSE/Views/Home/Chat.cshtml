@@ -1,0 +1,46 @@
+﻿<h1>Connection @Model</h1>
+<a href="javascript:openEventSource();">Click Me To Open connection</a><br/>
+<a href="javascript:close();">Click Me To Stop the Magic</a>
+<div id="targetDiv"></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    let eventSource;
+    function close() {
+        if (!!eventSource) {
+            console.log("Close event source");
+            eventSource.close();
+        }
+    }
+    function openEventSource() {
+        eventSource = new EventSource(`../../Api/Values?id=${@Model}`);
+        eventSource.addEventListener('open', function (e) {
+            document.getElementById('targetDiv').innerHTML += 'Connection opened<br/>';
+
+            showNotification(e.data);
+        });
+        eventSource.addEventListener('closed', function (e) {
+            document.getElementById('targetDiv').innerHTML += 'Connection closed<br/>';
+
+            showNotification(e.data);
+        });
+        eventSource.addEventListener('error', function (e) {
+            document.getElementById('targetDiv').innerHTML += 'Connection broke<br/>';
+
+            showNotification(e);
+        });
+        eventSource.addEventListener('heartbeat', function (e) {
+            showNotification('heartbeat');
+        });
+        eventSource.addEventListener('hit', function (e) {
+            document.getElementById('targetDiv').innerHTML += e.data + '<br/>';
+
+            showNotification(e.data);
+        }, false);
+        
+
+        function showNotification(message) {
+            console.log(message)
+        }
+    }
+    openEventSource();
+</script>  
