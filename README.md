@@ -8,7 +8,8 @@ Start up project and browse to Home. Open a browser for the server and a browser
 ## To test reporting plugins
 
 Use postman or similar to make api calls:
-http://<url:port>/reporting/download/{pluginName}?[<parameterName>=<parameterValue>]
+
+```http://<url:port>/reporting/download/{pluginName}?[<parameterName>=<parameterValue>]```
 
 Possible Plugin Names:
 1. Excel ( you may need to update the file path to the testexcel.xlsx file)
